@@ -10,3 +10,5 @@ Create a .env file in project root path
 
 #in this format
 SECRET_CODE = 128bit secret code
+
+#Used a mailhog server with nodemail for email testing during development.
