@@ -12,7 +12,7 @@ const createSlots = async (id, user_id) => {
   let startTime = moment(availability.slots_time_from, "HH:mm:ss");
   //ending time
   let endTime = moment(startTime, "HH:mm:ss").add(
-    availability.session_length + availability.break,
+    availability.session_length,
     "minutes"
   );
 
@@ -32,10 +32,14 @@ const createSlots = async (id, user_id) => {
     await Slot.create(slot_data);
 
     //updating starting time
-    startTime = endTime;
+    startTime = endTime.add(
+        availability.break,
+        "minutes"
+      );;
+
     //updating ending time
     endTime = moment(startTime, "HH:mm:ss").add(
-      availability.session_length + availability.break,
+      availability.session_length,
       "minutes"
     );
 
